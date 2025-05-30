@@ -24,3 +24,4 @@ curl localhost:8080/api/people/P002
 ```
 curl localhost:8080/api/people/loans/{loanId}
 ```
+*** หมายเหตุ ติด Circular Reference
