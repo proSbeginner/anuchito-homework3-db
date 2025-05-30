@@ -1,5 +1,7 @@
 package com.anuchito.database.loan;
 
+import com.anuchito.database.person.Person;
+
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -33,4 +35,22 @@ public class Loan {
 
     @Column(name = "interest_rate")
     private double interestRate;
+
+        /**
+     * Many-to-One relationship with Person entity.
+     * A loan belongs to one person.
+     * @ManyToOne: Specifies this is the "Many" side pointing to the "One" side.
+     * @JoinColumn(name = "person_id", referencedColumnName = "person_id", nullable = false):
+     * - name = "person_id": Maps to the foreign key column in the 'loan' table.
+     * - referencedColumnName = "person_id": Tells JPA that this foreign key refers
+     * to the 'person_id' column in the 'person' table (not its primary key 'id').
+     * - nullable = false: Ensures that every loan must be associated with a Person.
+     */
+    @ManyToOne
+    @JoinColumn(
+        name = "person_id", 
+        referencedColumnName = "person_id", 
+        nullable = false
+    )
+    private Person person;
 }
